@@ -1,0 +1,12 @@
+﻿  2.c
+C:\Users\MarinoBarada\source\repos\struct\struct\2.c(154,19): warning C4047: 'function': 'char' differs in levels of indirection from 'char [256]'
+C:\Users\MarinoBarada\source\repos\struct\struct\2.c(154,11): warning C4024: 'delete': different types for formal and actual parameter 1
+C:\Users\MarinoBarada\source\repos\struct\struct\2.c(211,20): warning C4047: 'function': 'char *' differs in levels of indirection from 'char (*)[50]'
+C:\Users\MarinoBarada\source\repos\struct\struct\2.c(211,15): warning C4024: 'printInDat': different types for formal and actual parameter 1
+C:\Users\MarinoBarada\source\repos\struct\struct\2.c(52,18): warning C4101: 'numb': unreferenced local variable
+C:\Users\MarinoBarada\source\repos\struct\struct\2.c(358,19): warning C4028: formal parameter 1 different from declaration
+C:\Users\MarinoBarada\source\repos\struct\struct\2.c(361,9): warning C4101: 'numb': unreferenced local variable
+C:\Users\MarinoBarada\source\repos\struct\struct\2.c(361,6): warning C4101: 'i': unreferenced local variable
+C:\Users\MarinoBarada\source\repos\struct\struct\2.c(314): warning C4715: 'find': not all control paths return a value
+C:\Users\MarinoBarada\source\repos\struct\struct\2.c(356): warning C4715: 'findPrev': not all control paths return a value
+  struct.vcxproj -> C:\Users\MarinoBarada\source\repos\struct\Debug\struct.exe
