@@ -10,7 +10,7 @@ a) dinamički dodaje novi element iza određenog elementa,
 b) dinamički dodaje novi element ispred određenog elementa,
 c) sortira listu po prezimenima osoba,
 d) upisuje listu u datoteku,
-e) čita listu iz datoteke*/
+e) čita listu iz datoteke****/
 
 #define _CRT_SECURE_NO_WARNINGS 
 #include<stdio.h>
