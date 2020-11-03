@@ -5,7 +5,7 @@ prezime,apsolutni i relativni broj bodova.
 Napomena: Svaki redak datoteke sadrži ime i prezime studenta, te broj bodova na kolokviju.
 relatvan_br_bodova = br_bodova/max_br_bodova*100*/
 
-#define _CRT_SECURE_NO_WARNINGS
+/*#define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
@@ -33,7 +33,7 @@ int BroRed(char* FileName)
 
 	while (1)
 	{
-		if (fgets(baf, 80, File) == NULL)
+		if (fgets(baf, 100, File) == NULL)
 			break;
 		br++;
 	}
@@ -81,11 +81,13 @@ int ispis(char* FileName, int brojStud)
 int main()
 {
 	int brojr;
-	char *ime = "data.txt";
+	char* ime[20];
+	printf("Unesite ime dokumenta iz kojeg zelite citat podatke: ");
+	scanf("%s",ime );
 
 	brojr = BroRed(ime);
 
 	ispis(ime, brojr);
 
 	return 0;
-}
+}*/
