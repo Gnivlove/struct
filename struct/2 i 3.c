@@ -11,7 +11,7 @@ b) dinamički dodaje novi element ispred određenog elementa,
 c) sortira listu po prezimenima osoba,
 d) upisuje listu u datoteku,
 e) čita listu iz datoteke*/
-
+/*
 #define _CRT_SECURE_NO_WARNINGS 
 #include<stdio.h>
 #include<string.h>
@@ -485,4 +485,4 @@ void readFromDat(char* FileName, Position head)
 	}
 	fclose(dat);
 	printf("\n");
-}
+}*/
