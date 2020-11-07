@@ -15,25 +15,34 @@ typedef struct polynom {
 	Position next;
 }Poly;
 
-void printList(Position);
+void summPoly(Position, Position, Position);
+void printPoly(Position);
 void sort(int,int, Position);
 void readPoly(Position,char*);
 Position createPoly(int ,int );
+Position Max(Position , Position );
 
 int main()
 {	
-	Poly head1,head2;
+	Poly head1,head2, head3;
 	head1.next = NULL;
 	head2.next = NULL;
+	head3.next = NULL;
 	char name1[256], name2[256];
+
 	printf("\nEnter the name of the first document from which you want to read the data(e.g. Poly1.txt):\t");
 	scanf("%s", name1);
 	readPoly(&head1,&name1 );
+
 	printf("\nEnter the name of the second document from which you want to read the data(e.g. Poly2.txt):\t");
 	scanf("%s", name2);
 	readPoly(&head2,&name2);
-	printList(&head1);
-	printList(&head2);
+
+	printPoly(&head1);
+	printPoly(&head2);
+
+	summPoly(&head1, &head2, &head3);
+	printPoly(&head3);
 
 	return 0;
 }
@@ -81,17 +90,109 @@ void sort(int exp,int coeff, Position where)
 	where->next = p;
 }
 
-void printList(Position head) {
+void printPoly(Position head) {
 	Position p = NULL;
-	int i = 0;
 
 	printf("\nlist content:\n");
 	
 	for (p = head->next; p != NULL; p = p->next)
 	{
-		printf("%dx^%d\t", p->coeff, p->exp);
-		i++;
+		if(p->coeff>=0)
+			printf("+ %dx^%d ", p->coeff, p->exp);
+		else
+			printf(" %dx^%d ", p->coeff, p->exp);
 	}
 
 	printf("\n");
+}
+
+Position Max(Position p, Position q)
+{
+	if (p->exp < q->exp)
+		return p;
+	else
+		return q;
+
+}
+
+void insertAfter(Position where, Position what) {
+
+	while (where->next != NULL)
+		where = where->next;
+
+	what->next = where->next;
+	where->next = what;
+}
+
+void summPoly(Position p, Position q, Position head)
+{
+	Position r=NULL;
+	Position a = NULL;
+	int coeff = 0, exp =0 ;
+	p = p->next;
+	q = q->next;
+
+	while (p != NULL && q != NULL)
+	{
+		if (p->exp == q->exp)
+		{
+			coeff = p->coeff + q->coeff;
+			if (coeff == 0)
+			{
+				p = p->next;
+				q = q->next;
+			}
+			else
+			{
+				exp = p->exp;
+				r = createPoly(coeff, exp);
+				insertAfter(head, r);
+
+				p = p->next;
+				q = q->next;
+			}
+		}
+		else
+		{
+			a = Max(p, q);
+			if (a->coeff == 0);
+			else
+			{
+				r = createPoly(a->coeff, a->exp);
+				insertAfter(head, r);
+			}
+			if (a == p)
+				p = p->next;
+			else
+				q = q->next;
+		}
+	}
+	if (p == NULL)
+	{
+		while (q!=NULL)
+		{
+			if (q->coeff == 0)
+				q = q->next;
+			else
+			{
+				r = createPoly(q->coeff, q->exp);
+				insertAfter(head, r);
+				q = q->next;
+			}
+		}
+	}
+	else 
+	{
+		while (p != NULL)
+		{
+			if (p->coeff == 0)
+				p = p->next;
+			else
+			{
+				r = createPoly(p->coeff, p->exp);
+				insertAfter(head, r);
+				p = p->next;
+			}
+		}
+	}
 }
