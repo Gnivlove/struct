@@ -5,7 +5,7 @@ prezime,apsolutni i relativni broj bodova.
 Napomena: Svaki redak datoteke sadrži ime i prezime studenta, te broj bodova na kolokviju.
 relatvan_br_bodova = br_bodova/max_br_bodova*100*/
 
-/*#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
@@ -90,4 +90,4 @@ int main()
 	ispis(ime, brojr);
 
 	return 0;
-}*/
+}
