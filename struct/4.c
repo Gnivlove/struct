@@ -15,19 +15,22 @@ typedef struct polynom {
 	Position next;
 }Poly;
 
+void mulPoly(Position , Position , Position );
 void summPoly(Position, Position, Position);
 void printPoly(Position);
-void sort(int,int, Position);
+void sort1(int,int, Position);
+void sort2( Position);
 void readPoly(Position,char*);
 Position createPoly(int ,int );
 Position Max(Position , Position );
 
 int main()
 {	
-	Poly head1,head2, head3;
+	Poly head1,head2, head3,head4;
 	head1.next = NULL;
 	head2.next = NULL;
 	head3.next = NULL;
+	head4.next = NULL;
 	char name1[256], name2[256];
 
 	printf("\nEnter the name of the first document from which you want to read the data(e.g. Poly1.txt):\t");
@@ -38,11 +41,20 @@ int main()
 	scanf("%s", name2);
 	readPoly(&head2,&name2);
 
+	printf("\nFirst polynomial:\n");
 	printPoly(&head1);
+	printf("\nSecond polynomial:\n");
 	printPoly(&head2);
 
+	printf("\nThe sum of polynomials:\n");
 	summPoly(&head1, &head2, &head3);
+	sort2(&head3);
 	printPoly(&head3);
+
+	printf("\nMultiplication of polynomials:\n");
+	mulPoly(&head1, &head2, &head4);
+	sort2(&head4);
+	printPoly(&head4);
 
 	return 0;
 }
@@ -61,7 +73,7 @@ void readPoly(Position where, char* FileName)
 	while (feof(dat) == 0)
 	{
 		fscanf(dat, "%d %d", &coeff, &exp);
-		sort( exp,  coeff,  where);
+		sort1( exp,  coeff,  where);
 	}
 	fclose(dat);
 }
@@ -77,7 +89,7 @@ Position createPoly(int coeff, int exp)
 	return p;
 }
 
-void sort(int exp,int coeff, Position where)
+void sort1(int exp,int coeff, Position where)
 {
 	Position p;
 
@@ -90,16 +102,38 @@ void sort(int exp,int coeff, Position where)
 	where->next = p;
 }
 
+void sort2(Position head)
+{
+	Position p,what;
+	for (p = head->next; p->next != NULL; p = p->next)
+	{
+		if (p->exp == p->next->exp)
+		{
+			p->coeff = p->coeff + p->next->coeff;
+			what = p->next;
+			p->next = what->next;
+			free(what);
+		}
+	}
+	for (p = head->next; p->next != NULL; p = p->next)
+	{
+		if (p->next->coeff==0)
+		{
+			what = p->next;
+			p->next = what->next;
+			free(what);
+		}
+	}
+}
+
 void printPoly(Position head) {
 	Position p = NULL;
-
-	printf("\nlist content:\n");
 	
 	for (p = head->next; p != NULL; p = p->next)
 	{
 		if(p->coeff>=0)
 			printf("+ %dx^%d ", p->coeff, p->exp);
-		else
+		else 
 			printf(" %dx^%d ", p->coeff, p->exp);
 	}
 
@@ -195,4 +229,50 @@ void summPoly(Position p, Position q, Position head)
 			}
 		}
 	}
+}
+
+void mulPoly(Position p, Position q, Position head)
+{
+	Position  r = NULL, a = NULL, b = NULL,c=NULL;
+	Poly pivot, pivot1, pivot2;
+	pivot.next = NULL;
+	pivot1.next = NULL;
+	pivot2.next = NULL;
+	int coeff = 0, exp = 0;
+	int i = 0, j=0,numb;
+	p = p->next;
+	q = q->next;
+	c = q;
+	while (p != NULL)
+	{
+		q = c;
+		while (q != NULL)
+		{
+			
+			coeff = p->coeff * q->coeff;
+			exp = p->exp + q->exp;
+			r = createPoly(coeff, exp);
+			insertAfter(&pivot, r);
+			q = q->next;
+			i++;
+		}
+		p = p->next;
+	}
+	numb = i / 2;
+	r = pivot.next;
+	while (r != NULL)
+	{
+		if (j < numb)
+		{
+			sort1(r->exp,r->coeff, &pivot1);
+			r=r->next;
+		}
+		else
+		{
+			sort1(r->exp, r->coeff, &pivot2);
+			r = r->next;
+		}
+		j++;
+	}
+	summPoly(&pivot1, &pivot2, head);
 }
