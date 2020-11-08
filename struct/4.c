@@ -107,7 +107,8 @@ void sort1(int exp,int coeff, Position where)
 void sort2(Position head)
 {
 	Position p,what;
-	for (p = head->next; p->next != NULL; p = p->next)
+	p = head->next;
+	while ( p->next != NULL)
 	{
 		if (p->exp == p->next->exp)
 		{
@@ -116,8 +117,11 @@ void sort2(Position head)
 			p->next = what->next;
 			free(what);
 		}
+		else
+			p = p->next;
 	}
-	for (p = head->next; p->next != NULL; p = p->next)
+	p = head->next;
+	while (p->next != NULL)
 	{
 		if (p->next->coeff==0)
 		{
@@ -125,6 +129,8 @@ void sort2(Position head)
 			p->next = what->next;
 			free(what);
 		}
+		else
+			p = p->next;
 	}
 }
 
