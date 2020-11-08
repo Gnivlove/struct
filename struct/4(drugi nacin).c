@@ -21,12 +21,10 @@ void printPoly(Position);
 void sort1(int,int, Position);
 void sort2( Position);
 void readPoly(Position,char*);
-void insertAfter(Position, Position);
 Position createPoly(int ,int );
-Position Min(Position , Position );
 
 int main()
-{	
+{
 	Poly head1,head2, head3,head4;
 	head1.next = NULL;
 	head2.next = NULL;
@@ -72,7 +70,7 @@ void readPoly(Position where, char* FileName)
 		printf("File failed to open!!");
 		return 1;
 	}
-	
+
 	while (feof(dat) == 0)
 	{
 		fscanf(dat, "%d %d", &coeff, &exp);
@@ -85,7 +83,7 @@ Position createPoly(int coeff, int exp)
 {
 	Position p=NULL;
 	p = (Position)malloc(sizeof(Poly));
-	
+
 	p->coeff = coeff;
 	p->exp = exp;
 
@@ -137,34 +135,16 @@ void sort2(Position head)
 
 void printPoly(Position head) {
 	Position p = NULL;
-	
+
 	for (p = head->next; p != NULL; p = p->next)
 	{
 		if(p->coeff>=0)
 			printf("+ %dx^%d ", p->coeff, p->exp);
-		else 
+		else
 			printf(" %dx^%d ", p->coeff, p->exp);
 	}
 
 	printf("\n");
-}
-
-Position Min(Position p, Position q)
-{
-	if (p->exp < q->exp)
-		return p;
-	else
-		return q;
-
-}
-
-void insertAfter(Position where, Position what) {
-
-	while (where->next != NULL)
-		where = where->next;
-
-	what->next = where->next;
-	where->next = what;
 }
 
 void summPoly(Position p, Position q, Position head)
@@ -175,113 +155,38 @@ void summPoly(Position p, Position q, Position head)
 	p = p->next;
 	q = q->next;
 
-	while (p != NULL && q != NULL)
+	while (p != NULL)
 	{
-		if (p->exp == q->exp)
-		{
-			coeff = p->coeff + q->coeff;
-			if (coeff == 0)
-			{
-				p = p->next;
-				q = q->next;
-			}
-			else
-			{
-				exp = p->exp;
-				r = createPoly(coeff, exp);
-				insertAfter(head, r);
-
-				p = p->next;
-				q = q->next;
-			}
-		}
-		else
-		{
-			a = Min(p, q);
-			if (a->coeff == 0);
-			else
-			{
-				r = createPoly(a->coeff, a->exp);
-				insertAfter(head, r);
-			}
-			if (a == p)
-				p = p->next;
-			else
-				q = q->next;
-		}
+		sort1(p->exp, p->coeff, head);
+		p = p->next;
 	}
-	if (p == NULL)
+	while (q != NULL)
 	{
-		while (q!=NULL)
-		{
-			if (q->coeff == 0)
-				q = q->next;
-			else
-			{
-				r = createPoly(q->coeff, q->exp);
-				insertAfter(head, r);
-				q = q->next;
-			}
-		}
-	}
-	else 
-	{
-		while (p != NULL)
-		{
-			if (p->coeff == 0)
-				p = p->next;
-			else
-			{
-				r = createPoly(p->coeff, p->exp);
-				insertAfter(head, r);
-				p = p->next;
-			}
-		}
-	}
+		sort1(q->exp, q->coeff, head);
+		q = q->next;
+	}	
 }
 
 void mulPoly(Position p, Position q, Position head)
 {
-	Position  r = NULL, a = NULL, b = NULL,c=NULL;
-	Poly pivot, pivot1, pivot2;
-	pivot.next = NULL;
-	pivot1.next = NULL;
-	pivot2.next = NULL;
+	Position  r = NULL;
 	int coeff = 0, exp = 0;
 	int i = 0, j=0,numb;
 	p = p->next;
 	q = q->next;
-	c = q;
+	r = q;
 	while (p != NULL)
 	{
-		q = c;
+		q = r;
 		while (q != NULL)
 		{
-			
+
 			coeff = p->coeff * q->coeff;
 			exp = p->exp + q->exp;
-			r = createPoly(coeff, exp);
-			insertAfter(&pivot, r);
+			sort1(exp, coeff, head);
 			q = q->next;
 			i++;
 		}
 		p = p->next;
 	}
-	numb = i / 2;
-	r = pivot.next;
-	while (r != NULL)
-	{
-		if (j < numb)
-		{
-			sort1(r->exp,r->coeff, &pivot1);
-			r=r->next;
-		}
-		else
-		{
-			sort1(r->exp, r->coeff, &pivot2);
-			r = r->next;
-		}
-		j++;
-	}
-	summPoly(&pivot1, &pivot2, head);
 }
