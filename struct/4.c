@@ -22,7 +22,7 @@ void sort1(int,int, Position);
 void sort2( Position);
 void readPoly(Position,char*);
 Position createPoly(int ,int );
-Position Max(Position , Position );
+Position Min(Position , Position );
 
 int main()
 {	
@@ -42,8 +42,10 @@ int main()
 	readPoly(&head2,&name2);
 
 	printf("\nFirst polynomial:\n");
+	sort2(&head1);
 	printPoly(&head1);
 	printf("\nSecond polynomial:\n");
+	sort2(&head2);
 	printPoly(&head2);
 
 	printf("\nThe sum of polynomials:\n");
@@ -140,7 +142,7 @@ void printPoly(Position head) {
 	printf("\n");
 }
 
-Position Max(Position p, Position q)
+Position Min(Position p, Position q)
 {
 	if (p->exp < q->exp)
 		return p;
@@ -188,7 +190,7 @@ void summPoly(Position p, Position q, Position head)
 		}
 		else
 		{
-			a = Max(p, q);
+			a = Min(p, q);
 			if (a->coeff == 0);
 			else
 			{
