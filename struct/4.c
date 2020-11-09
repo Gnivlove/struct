@@ -20,7 +20,7 @@ void summPoly(Position, Position, Position);
 void printPoly(Position);
 void sort1(int,int, Position);
 void sort2( Position);
-void readPoly(Position,char*);
+void readPoly(Position, Position,char*);
 void insertAfter(Position, Position);
 Position createPoly(int ,int );
 Position Min(Position , Position );
@@ -32,40 +32,33 @@ int main()
 	head2.next = NULL;
 	head3.next = NULL;
 	head4.next = NULL;
-	char name1[256], name2[256];
+	char name[256];
 
-	printf("\nEnter the name of the first document from which you want to read the data(e.g. Poly1.txt):\t");
-	scanf("%s", name1);
-	readPoly(&head1,&name1 );
-
-	printf("\nEnter the name of the second document from which you want to read the data(e.g. Poly2.txt):\t");
-	scanf("%s", name2);
-	readPoly(&head2,&name2);
+	printf("\nEnter the name of the document from which you want to read the data(e.g. Poly.txt):\t");
+	scanf("%s", name);
+	readPoly(&head1 ,&head2,&name);
 
 	printf("\nFirst polynomial:\n");
-	sort2(&head1);
 	printPoly(&head1);
 	printf("\nSecond polynomial:\n");
-	sort2(&head2);
 	printPoly(&head2);
 
 	printf("\nThe sum of polynomials:\n");
 	summPoly(&head1, &head2, &head3);
-	sort2(&head3);
 	printPoly(&head3);
 
 	printf("\nMultiplication of polynomials:\n");
 	mulPoly(&head1, &head2, &head4);
-	sort2(&head4);
 	printPoly(&head4);
 
 	return 0;
 }
 
-void readPoly(Position where, char* FileName)
+void readPoly(Position where, Position what, char* FileName)
 {
 	FILE *dat;
 	int coeff = 0, exp = 0;
+	char c;
 	dat = fopen(FileName, "r");
 	if(!dat)
 	{
@@ -73,10 +66,19 @@ void readPoly(Position where, char* FileName)
 		return 1;
 	}
 	
-	while (feof(dat) == 0)
+	while (!feof(dat))
 	{
-		fscanf(dat, "%d %d", &coeff, &exp);
-		sort1( exp,  coeff,  where);
+		c = fgetc(dat);
+		if (c != '\n') {
+			fscanf(dat, " %d %d", &coeff, &exp);
+			sort1(exp, coeff, where);
+		}
+		else {
+			while (!feof(dat)) {
+				fscanf(dat, " %d %d", &coeff, &exp);
+				sort1(exp, coeff, what);
+			}
+		}
 	}
 	fclose(dat);
 }
@@ -238,6 +240,7 @@ void summPoly(Position p, Position q, Position head)
 			}
 		}
 	}
+	sort2(head);
 }
 
 void mulPoly(Position p, Position q, Position head)
