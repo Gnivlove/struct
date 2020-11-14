@@ -27,5 +27,13 @@
     <ClCompile Include="4(drugi nacin).c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="5.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="lista.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

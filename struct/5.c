@@ -19,7 +19,7 @@ void sort1(int, Position);
 void sort2(Position);
 void readPoly(Position, Position, char*);
 void Union(Position, Position, Position);
-void cut(Position, Position, Position);
+void Intersection(Position, Position, Position);
 void print(Position);
 Position create(int);
 
@@ -42,8 +42,8 @@ int main()
 	Union(&head1, &head2, &head3);
 	print(&head3);
 
-	printf("\Cut of sets:\n");
-	cut(&head1, &head2, &head4);
+	printf("\Intersection of sets:\n");
+	Intersection(&head1, &head2, &head4);
 	print(&head4);
 
 	system("pause");
@@ -104,11 +104,13 @@ void readPoly(Position where, Position what, char* FileName)
 void print(Position head)
 {
 	Position p = NULL;
+	printf("\t");
 
 	for (p = head->next;p != NULL;p = p->next)
 	{
-		printf("\t %d", p->number);
+		printf("%d  ", p->number);
 	}
+	puts("");
 	puts("");
 }
 
@@ -128,9 +130,15 @@ void Union(Position p, Position q, Position head)
 	Position r = NULL;
 	p = p->next;
 	q = q->next;
-	while (p->next != NULL && q->next != NULL)
+	while (p != NULL || q!= NULL)
 	{
-		if (p->number < q->next)
+		if (p == NULL)
+			break;
+
+		if (q == NULL)
+			break;
+
+		if (p->number < q->number)
 		{
 			r = create(p->number);
 			insertAfter(head, r);
@@ -152,9 +160,9 @@ void Union(Position p, Position q, Position head)
 
 	}
 
-	if (p->next == NULL)
+	if (p == NULL)
 	{
-		while (q->next != NULL)
+		while (q != NULL)
 		{	
 				r = create(q->number);
 				insertAfter(head, r);
@@ -163,7 +171,7 @@ void Union(Position p, Position q, Position head)
 	}
 	else
 	{
-		while (p->next != NULL)
+		while (p != NULL)
 		{
 				r = create(p->number);
 				insertAfter(head, r);
@@ -173,7 +181,7 @@ void Union(Position p, Position q, Position head)
 	}
 }
 
-void cut(Position p, Position q, Position head)
+void Intersection(Position p, Position q, Position head)
 {
 	Position r = NULL, a, b;
 	p = p->next;
