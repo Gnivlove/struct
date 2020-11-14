@@ -1,7 +1,7 @@
 /*. Za dvije sortirane liste L1 i L2 (mogu se proèitati iz datoteke ili unijeti ruèno, bitno je
 samo da su sortirane), napisati program koji stvara novu vezanu listu tako da raèuna:
 a) L1unijaL2,
-b) L1presjekL2.*/#define _CRT_SECURE_NO_WARNINGS
+b) L1presjekL2.*/#define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
@@ -35,14 +35,14 @@ int main()
 
 	printf("\nFirst set of numbers:\n");
 	print(&head1);
-	printf("\Second set of numbers:\n");
+	printf("\nSecond set of numbers:\n");
 	print(&head2);
 
 	printf("\nUnion of sets:\n");
 	Union(&head1, &head2, &head3);
 	print(&head3);
 
-	printf("\Intersection of sets:\n");
+	printf("\nIntersection of sets:\n");
 	Intersection(&head1, &head2, &head4);
 	print(&head4);
 
@@ -110,7 +110,6 @@ void print(Position head)
 	{
 		printf("%d  ", p->number);
 	}
-	puts("");
 	puts("");
 }
 
