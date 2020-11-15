@@ -46,6 +46,7 @@ int main()
 	Intersection(&head1, &head2, &head4);
 	print(&head4);
 
+	puts("");
 	system("pause");
 	return 0;
 }
@@ -187,8 +188,14 @@ void Intersection(Position p, Position q, Position head)
 	q = q->next;
 	a = p;
 	b = q;
-	while (p->next != NULL && q->next != NULL)
+	while (p!= NULL && q!= NULL)
 	{
+		if (p == NULL)
+			break;
+
+		if (q == NULL)
+			break;
+
 		if (p->number < q->number)
 		{
 			p = p->next;
@@ -208,7 +215,7 @@ void Intersection(Position p, Position q, Position head)
 	if (p == NULL)
 	{
 		p = a;
-		while (q->next != NULL && p->next != NULL)
+		while (q != NULL && p!= NULL)
 		{
 			if (p->number < q->number)
 			{
@@ -230,7 +237,7 @@ void Intersection(Position p, Position q, Position head)
 	else
 	{
 		q = b;
-		while (p->next != NULL && q->next != NULL)
+		while (p != NULL && q!= NULL)
 		{
 			if (p->number < q->number)
 			{
