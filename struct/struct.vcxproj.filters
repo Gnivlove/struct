@@ -30,6 +30,12 @@
     <ClCompile Include="5.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="6,a.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="6,b.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="lista.txt">
