@@ -146,9 +146,11 @@
     <ClCompile Include="5.c" />
     <ClCompile Include="6,a.c" />
     <ClCompile Include="6,b.c" />
+    <ClCompile Include="7.c" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="lista.txt" />
+    <Text Include="postfix.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

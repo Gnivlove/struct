@@ -36,9 +36,15 @@
     <ClCompile Include="6,b.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="7.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="lista.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="postfix.txt">
       <Filter>Source Files</Filter>
     </Text>
   </ItemGroup>

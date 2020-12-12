@@ -18,7 +18,7 @@ typedef struct stog
 void Read(char*, char*);
 void Push(Position , int );
 int Pop(Position);
-int Postfix(Position, char*,int);
+void Postfix(Position, char*,int);
 
 int main()
 {
@@ -28,17 +28,14 @@ int main()
 	char name[256];
 	char* buffer = NULL;
 	buffer = (char*)malloc(1000 * sizeof(char));
-	memset(buffer, '\0', 1000);
-
+	memset(buffer, '\0', 1000);				// radi i bez ovoga 
 
 	printf("\nEnter the name of the document from which you want to read the data(e.g. postfix.txt):\t");
 	scanf("%s", name);
 
-	/*number =*/ Read(&name, buffer);
-	number = strlen(buffer);
-	printf(" =  %d", Postfix(&head, buffer, number));
-	puts("");
-	puts("");
+	Read(&name, buffer);
+	number = strlen(buffer);				
+	Postfix(&head, buffer, number);
 	system("pause");
 	return 0;
 }
@@ -55,19 +52,7 @@ void Read(char* FileName, char* buffer)
 		return 1;
 	}
 	fgets(buffer,1000,dat);
-
-		/*while (!feof(dat))
-		{
-			c[i] = fgetc(dat);
-			i++;
-		}*/
 	fclose(dat);
-	//n = i - 1;
-
-	/*for (i = 0;i < n;i++)
-		printf("%c", c[i]);*/
-
-	//return n;
 }
 
 void Push(Position p, int a)
@@ -101,45 +86,43 @@ int Pop(Position p)
 	return element;
 }
 
-int Postfix(Position head, char* buffer,int n)
+void Postfix(Position head, char* buffer,int n)
 {
-	int i,number;
-	int value;
-	//for (i = 0;i < n; i++)
+	int number, result = 0,count=0;
+	int  c_value , i_value ;
+	char operation;
 
-	
-
-	for(i=0;i=<n;i++)
+	while (result <= n)
 	{
-		(c, " %s", a);
+		c_value = 0;
+		i_value = 0;
+		i_value=sscanf(buffer, "%d%n", &number,&count);
 
-		if ((a + i) == ' ')
-			continue;
-		else if (isdigit(*(a + i)))
+		if (i_value == 1)
 		{
-			number = 0;
-
-			while (isdigit(*(a + i)))
-			{
-				number = number * 10 + (int)(*(a + i) - '0');
-				i++;
-			}
-			i--;
+			printf(" %d",number);
 			Push(head, number);
 		}
 		else
 		{
-			int el1 = Pop(head);
-			int el2 = Pop(head);
-
-			switch (c[i])
+			c_value = sscanf(buffer, " %c%n", &operation, &count);
+			if (c_value == 1)
 			{
-			case'+':Push(head, el2 + el1);break;
-			case'-':Push(head, el2 - el1);break;
-			case'*':Push(head, el2 * el1);break;
-			case'/':Push(head, el2 / el1);break;
+				printf(" %c", operation);
+				int el1 = Pop(head);
+				int el2 = Pop(head);
+
+				switch (operation)
+				{
+				case'+':Push(head, el2 + el1); break;
+				case'-':Push(head, el2 - el1); break;
+				case'*':Push(head, el2 * el1); break;
+				case'/':Push(head, el2 / el1); break;
+				}
 			}
 		}
+		buffer += count;
+		result += count;
 	}
-	return Pop(head);
+	printf(" = %d\n\n", Pop(head));
 }
