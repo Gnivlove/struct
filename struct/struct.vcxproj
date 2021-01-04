@@ -88,6 +88,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -147,6 +148,7 @@
     <ClCompile Include="6,a.c" />
     <ClCompile Include="6,b.c" />
     <ClCompile Include="7.c" />
+    <ClCompile Include="8.c" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="lista.txt" />
