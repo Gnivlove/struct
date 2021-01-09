@@ -149,6 +149,7 @@
     <ClCompile Include="6,b.c" />
     <ClCompile Include="7.c" />
     <ClCompile Include="8.c" />
+    <ClCompile Include="9.c" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="lista.txt" />

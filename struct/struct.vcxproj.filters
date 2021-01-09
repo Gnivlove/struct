@@ -42,6 +42,9 @@
     <ClCompile Include="8.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="9.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="lista.txt">
