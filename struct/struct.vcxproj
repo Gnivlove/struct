@@ -141,6 +141,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="1.c" />
+    <ClCompile Include="10.c" />
     <ClCompile Include="2 i 3.c" />
     <ClCompile Include="4(drugi nacin).c" />
     <ClCompile Include="4.c" />
@@ -152,6 +153,7 @@
     <ClCompile Include="9.c" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="infix.txt" />
     <Text Include="lista.txt" />
     <Text Include="postfix.txt" />
   </ItemGroup>
