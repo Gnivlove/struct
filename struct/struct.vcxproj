@@ -142,6 +142,7 @@
   <ItemGroup>
     <ClCompile Include="1.c" />
     <ClCompile Include="10.c" />
+    <ClCompile Include="11.c" />
     <ClCompile Include="2 i 3.c" />
     <ClCompile Include="4(drugi nacin).c" />
     <ClCompile Include="4.c" />
@@ -156,6 +157,7 @@
     <Text Include="infix.txt" />
     <Text Include="lista.txt" />
     <Text Include="postfix.txt" />
+    <Text Include="zad11.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

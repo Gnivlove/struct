@@ -1,0 +1,10 @@
+Ante           	Antic          	197
+Bartul         	Antic          	198
+Mate           	Balota         	877
+Marino         	Barada         	900
+Toni           	Barada         	789
+Mihael         	Baresic        	555
+Ivan           	Caleta         	193
+Ivo            	Ivic           	207
+Jakov          	Jonic          	237
+Nina           	Juranovic		777
